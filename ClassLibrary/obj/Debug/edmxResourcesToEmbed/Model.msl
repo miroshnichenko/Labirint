@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BlasigLabirintDataModelStoreContainer" CdmEntityContainer="LabirintEntities">
+    <EntitySetMapping Name="Visitors">
+      <EntityTypeMapping TypeName="Blasig.Labirint.DataModel.Conceptual.Visitor">
+        <MappingFragment StoreEntitySet="LABIRINT_VISITORS">
+          <ScalarProperty Name="TimeEnd" ColumnName="TIME_CLOSE" />
+          <ScalarProperty Name="Paid" ColumnName="MINUTE_PAYED" />
+          <ScalarProperty Name="TimeStart" ColumnName="TIME_START" />
+          <ScalarProperty Name="WithParents" ColumnName="WITH_PARENTS" />
+          <ScalarProperty Name="Birthday" ColumnName="BIRTHDAY" />
+          <ScalarProperty Name="ID" ColumnName="ID_VISITOR" />
+          <ScalarProperty Name="Check" ColumnName="NOMEROK" />
+          <ScalarProperty Name="ClientName" ColumnName="CLIENT_NAME" />
+          <ScalarProperty Name="Telephone" ColumnName="PHONE" />
+          <ScalarProperty Name="Age" ColumnName="AGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

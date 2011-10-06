@@ -1,0 +1,70 @@
+﻿<Window x:Class="Blasig.Labirint.GUI.AddVisitorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавление посетителя" Width="500" SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        Style="{StaticResource DialogTransparentWindow}"
+        Loaded="Window_Loaded">
+    <Border Style="{StaticResource DialogWindowBorder}">
+        <DockPanel>
+            <Image DockPanel.Dock="Left" VerticalAlignment="Top" Style="{StaticResource WindowIconStyle}"
+                   Source="pack://application:,,,/Resources;component/Resources/Client.png" />
+            <Grid DockPanel.Dock="Top"  Margin="15,15,31,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Имя клиента:" Style="{StaticResource TextBlockStyle}" />
+                <TextBlock Text="Номер телефона:" Grid.Row="1" Style="{StaticResource TextBlockStyle}" />
+                <TextBlock Text="Возраст:" Grid.Row="2" Style="{StaticResource TextBlockStyle}" />
+                <TextBlock Text="Оплачено:" Grid.Row="3" Style="{StaticResource TextBlockStyle}" />
+                <TextBlock Grid.Row="4" Text="С родителями?" Style="{StaticResource TextBlockStyle}" />
+                <TextBlock Grid.Row="5" Text="Дата рождения:" Style="{StaticResource TextBlockStyle}" />
+                <TextBox x:Name="ClientNameTextBox" Grid.Column="1" Style="{StaticResource TextBoxStyle}"
+                         Text="{Binding Path=ClientName, ValidatesOnDataErrors=True,
+                    UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox x:Name="TelephoneTextBox" Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxStyle}"
+                         Text="{Binding Path=Telephone,
+                    ValidatesOnDataErrors=True,
+                    UpdateSourceTrigger=PropertyChanged}" />
+                <ComboBox Grid.Column="1" Grid.Row="2" Style="{StaticResource ComboBoxStyle}"
+                        ItemsSource="{Binding Source={StaticResource ResourceKey=AgesData}, XPath=Age}" 
+                        DisplayMemberPath="@Description"  SelectedValuePath="@Value"
+                        SelectedValue="{Binding Path=Age}"
+                        IsSynchronizedWithCurrentItem="True" />
+                <ComboBox Grid.Column="1" Grid.Row="3" Style="{StaticResource ComboBoxStyle}" 
+                        ItemsSource="{Binding Source={StaticResource ResourceKey=MinutesData}, XPath=Minute}" 
+                        DisplayMemberPath="@Description"  SelectedValuePath="@Value"
+                        SelectedValue="{Binding Path=Paid}"
+                        IsSynchronizedWithCurrentItem="True" />
+                <ToggleButton Grid.Column="1" Grid.Row="4" Style="{StaticResource ToggleButtonStyle}" 
+                              IsChecked="{Binding Path=WithParents}" Click="ToggleButton_Click">
+                </ToggleButton>
+                <DatePicker Grid.Column="1" Grid.Row="5" Style="{StaticResource DatePickerStyle}"
+                        SelectedDate="{Binding Path=Birthday}">
+                    <DatePicker.CalendarStyle>
+                        <Style TargetType="{x:Type Calendar}">
+                            <Setter Property="LayoutTransform" >
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DatePicker.CalendarStyle>
+                </DatePicker>
+            </Grid>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Button Content="OK" IsDefault="True" Style="{StaticResource LargeButtonStyle}" Click="OKButton_Click" />
+                <Button Content="Отмена" Style="{StaticResource LargeButtonStyle}" Click="CancelButton_Click" />
+            </StackPanel>
+        </DockPanel>
+    </Border>
+</Window>

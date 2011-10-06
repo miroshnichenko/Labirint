@@ -1,0 +1,198 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Blasig.Labirint.GUI">
+    <local:TimeLeftConverter x:Key="TimeLeftConverter" />
+    <!-- Возрастные группы детей-->
+    <XmlDataProvider x:Key="AgesData" XPath="Ages">
+        <x:XData>
+            <Ages xmlns="">
+                <Age Value="-1" Description="Неизвестен" />
+                <Age Value="0" Description="&lt; 1 года" />
+                <Age Value="1" Description="1 год" />
+                <Age Value="2" Description="2 года" />
+                <Age Value="3" Description="3 года" />
+                <Age Value="4" Description="4 года" />
+                <Age Value="5" Description="5 лет" />
+                <Age Value="6" Description="6 лет" />
+                <Age Value="7" Description="7 лет" />
+                <Age Value="8" Description="8 лет" />
+                <Age Value="9" Description="9 лет" />
+                <Age Value="10" Description="10 лет" />
+                <Age Value="11" Description="11 лет" />
+                <Age Value="12" Description="12 лет" />
+                <Age Value="13" Description="13 лет" />
+                <Age Value="14" Description="14 лет" />
+            </Ages>
+        </x:XData>
+    </XmlDataProvider>
+    <!-- Предопределенные значения времени аренды номерка -->
+    <XmlDataProvider x:Key="MinutesData" XPath="Minutes">
+        <x:XData>
+            <Minutes xmlns="">
+                <Minute Value="30" Description="30 мин" />
+                <Minute Value="60" Description="1 ч" />
+                <Minute Value="90" Description="1 ч 30 мин" />
+                <Minute Value="120" Description="2ч" />
+                <Minute Value="150" Description="2 ч 30 мин" />
+                <Minute Value="180" Description="3 ч" />
+                <Minute Value="210" Description="3 ч 30 мин" />
+                <Minute Value="210" Description="4 ч" />
+            </Minutes>
+        </x:XData>
+    </XmlDataProvider>
+    <!-- Шаблон отображения ошибки ввода -->
+    <ControlTemplate x:Key="TextBoxErrorTemplate" TargetType="Control">
+        <DockPanel>
+            <Border DockPanel.Dock="Left" BorderBrush="Red" BorderThickness="1" Margin="-1">
+                <AdornedElementPlaceholder  />
+            </Border>
+            <Image DockPanel.Dock="Right" Margin="2,0"
+                   Source="./Resources/Warn.png">
+                <Image.ToolTip>Поле ввода содержит ошибки</Image.ToolTip>
+            </Image>
+        </DockPanel>
+    </ControlTemplate>
+    <!-- Ресурсы приложения -->
+    <Style x:Key="DialogTransparentWindow" TargetType="{x:Type Window}">
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="ResizeMode" Value="NoResize" />
+    </Style>
+
+    <Style x:Key="DialogWindowBorder" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="LightGray" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Opacity" Value=".9" />
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#363636" Offset="0.0"/>
+                            <GradientStop Color="#000000" Offset="1.0"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Фон главного окна -->
+    <ImageBrush x:Key="Background" ImageSource="./Resources/Background.jpg"
+                TileMode="Tile" Viewport="0,0,0.2,0.2" />
+
+    <!-- Стили WPF -->
+    <Style x:Key="baseStyle" TargetType="{x:Type Control}" >
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="2" />
+    </Style>
+    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource baseStyle}">
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextBoxErrorTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="ToolTip" Value="{Binding Path=(Validation.Errors)[0].ErrorContent, 
+                    RelativeSource={x:Static RelativeSource.Self}}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource baseStyle}" />
+    <Style x:Key="RadioButtonStyle" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource baseStyle}" />
+    <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}" >
+        <Setter Property="Margin" Value="2"  />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="15" />
+    </Style>
+    <!-- Стиль большой кнопки диалогового окна -->
+    <Style x:Key="LargeButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource baseStyle}">
+        <Setter Property="Width" Value="100" />
+        <Setter Property="Height" Value="100" />
+        <Setter Property="Margin" Value="5" />
+    </Style>
+    <!-- Стиль ToggleButton с триггером -->
+    <Style x:Key="ToggleButtonStyle" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource baseStyle}">
+        <Setter Property="Content" Value="Нет" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Content" Value="Да" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!-- Стиль иконки диалогового окна -->
+    <Style x:Key="WindowIconStyle" TargetType="{x:Type Image}">
+        <Setter Property="Margin" Value="15"/>
+        <Setter Property="Stretch" Value="None"/>
+    </Style>
+    <Style x:Key="DatePickerStyle" TargetType="{x:Type DatePicker}" 
+           BasedOn="{StaticResource baseStyle}" />
+    <!-- Стиль текста кнопки номерка -->
+    <Style x:Key="CheckText" TargetType="{x:Type TextBlock}">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="15" Opacity="0" RenderingBias="Performance" />
+            </Setter.Value>
+        </Setter>
+        <!-- Индикация цветом и анимацией оставшегося времени -->
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=LeftTime, Converter={StaticResource TimeLeftConverter}}" Value="3">
+                <Setter Property="Foreground" Value="Green" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=LeftTime, Converter={StaticResource TimeLeftConverter}}" Value="2">
+                <Setter Property="Foreground" Value="#C04000" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=LeftTime, Converter={StaticResource TimeLeftConverter}}" Value="1">
+                <Setter Property="Foreground" Value="Red" />
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                Storyboard.TargetProperty="Opacity"
+                                RepeatBehavior="Forever"
+                                AutoReverse="True"
+                                From="1"
+                                To=".5"
+                                Duration="0:0:0.8">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <!-- Стиль TextBlock имитирующий цифровое табло -->
+    <Style x:Key="DigitalText" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource CheckText}">
+        <Setter Property="FontFamily" Value="./resources/#LCD2" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Margin" Value="4,0,2,0" />
+    </Style>
+    <Style x:Key="NormalText" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource CheckText}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Margin" Value="2,0,2,0" />
+    </Style>
+    <!-- Стиль кнопки номерка -->
+    <Style x:Key="CheckButtonStyle" TargetType="{x:Type Button}">
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
+                             Color="{x:Static SystemColors.ControlColor}"/>
+        </Style.Resources>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Value}" Value="{x:Null}">
+                <Setter Property="Foreground" Value="Gray" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <!-- Workaround: установка прозрачности выделенного элемента -->
+    <Style x:Key="SelectedListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                             Color="Transparent"/>
+            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
+                             Color="Transparent"/>
+        </Style.Resources>
+    </Style>
+
+</ResourceDictionary>

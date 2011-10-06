@@ -1,0 +1,6 @@
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\bin\Release\DataAccess.dll.config
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\bin\Release\DataAccess.dll
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\bin\Release\DataAccess.pdb
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\obj\Release\ResolveAssemblyReference.cache
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\obj\Release\DataAccess.dll
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\obj\Release\DataAccess.pdb

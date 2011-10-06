@@ -1,0 +1,6 @@
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\bin\Debug\ClassLibrary.dll.config
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\bin\Debug\ClassLibrary.dll
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\bin\Debug\ClassLibrary.pdb
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\obj\Debug\ResolveAssemblyReference.cache
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\obj\Debug\ClassLibrary.dll
+D:\Мои документы\Visual Studio 2010\Projects\Solution1\ClassLibrary\obj\Debug\ClassLibrary.pdb

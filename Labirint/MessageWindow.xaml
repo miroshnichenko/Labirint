@@ -1,0 +1,23 @@
+﻿<Window x:Class="Blasig.Labirint.GUI.MessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MessageWindow" Width="500" SizeToContent="Height"
+        Style="{StaticResource DialogTransparentWindow}"
+        WindowStartupLocation="CenterOwner" >
+    <Border Style="{StaticResource DialogWindowBorder}">
+        <DockPanel>
+            <Image DockPanel.Dock="Left" x:Name="Img" x:FieldModifier="private"
+                   Style="{StaticResource WindowIconStyle}"  VerticalAlignment="Top" />
+            <ScrollViewer DockPanel.Dock="Top" Margin="15" MaxHeight="140" VerticalScrollBarVisibility="Auto" >
+                <TextBlock x:Name="Text" x:FieldModifier="private"
+                           Style="{StaticResource TextBlockStyle}" VerticalAlignment="Top" TextWrapping="Wrap"  />
+            </ScrollViewer>
+            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Content="OK" IsDefault="True" Style="{StaticResource LargeButtonStyle}" Click="OKButton_Click" />
+                <Button x:Name="Canc" x:FieldModifier="private" 
+                        Style="{StaticResource LargeButtonStyle}" 
+                        Content="Отмена" Click="CancelButton_Click" />
+            </StackPanel>
+        </DockPanel>
+    </Border>
+</Window>
