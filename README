@@ -1,0 +1,14 @@
+This application was designed for Igroland Ukraine.
+
+The purpose of this app is to provide time management features for
+children registration that enter children playground.
+
+Changelog:
+
+v.1.1.3
+* Added logging feature to log throwed unhandled exceptios.
+* Fixed paid time relation in corresponding XML resource
+
+=================================
+v.1.0.3
+* First release of Labirint app

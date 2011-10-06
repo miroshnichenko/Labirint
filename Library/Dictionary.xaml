@@ -36,7 +36,7 @@
                 <Minute Value="150" Description="2 ч 30 мин" />
                 <Minute Value="180" Description="3 ч" />
                 <Minute Value="210" Description="3 ч 30 мин" />
-                <Minute Value="210" Description="4 ч" />
+                <Minute Value="240" Description="4 ч" />
             </Minutes>
         </x:XData>
     </XmlDataProvider>
