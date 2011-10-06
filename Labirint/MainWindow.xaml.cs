@@ -43,7 +43,6 @@ namespace Blasig.Labirint.GUI
         public MainWindow()
         {
             InitializeComponent();
-            
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             StringBuilder builder = new StringBuilder();
             builder.Append(this.Title);

@@ -31,6 +31,15 @@ namespace Blasig.Labirint.GUI
 
             base.OnStartup(e);
         }
+
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            SimpleLogger.Log(e.Exception);
+            MessageBox.Show("Было сгенерировано исключение, которое программа не смогла обработать. Сейчас произойдет аварийное завершение выполнения программы", 
+                "Критическая ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            e.Handled = true;
+            this.Shutdown(-1);
+        }
     }
 
     
