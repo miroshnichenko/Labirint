@@ -395,13 +395,13 @@ namespace Blasig.Labirint.GUI
     }
 
     /// <summary>
-    /// Представляет номерк и клиента, его арендовавшего
+    /// Представляет номерок и клиента, его арендовавший
     /// </summary>
     public class VisitorItem : INotifyPropertyChanged
     {
         private TimeSpan? _LeftTime;
         private Visitor _Value;
-        private Timer Timer = new Timer(500);
+        private Timer Timer = new Timer(100);
 
         public VisitorItem()
         {

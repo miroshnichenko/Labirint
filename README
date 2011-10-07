@@ -5,6 +5,11 @@ children registration that enter children playground.
 
 Changelog:
 
+v.1.2.3
+* Added end time text block
+* Fixed left time timer
+
+=================================
 v.1.1.3
 * Added logging feature to log throwed unhandled exceptios.
 * Fixed paid time relation in corresponding XML resource

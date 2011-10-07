@@ -9,6 +9,7 @@
     <Window.Resources>
         <local:RentValueConverter x:Key="RentValueConverter" />
         <local:AgeValueConverter x:Key="AgeValueConverter" />
+        <local:TimeEndConverter x:Key="TimeEndConverter" />
         <ObjectDataProvider ObjectType="{x:Type local:VisitorItems}" x:Key="Data" />
         <CollectionViewSource Source="{StaticResource Data}" x:Key="OrderedData" >
             <CollectionViewSource.GroupDescriptions>
@@ -49,15 +50,21 @@
                         <TextBlock Style="{StaticResource DigitalText}" Text="{Binding Path=Value.TimeStart, StringFormat=HH:mm}" Grid.Row="5"/>
                         <TextBlock Style="{StaticResource NormalText}" Text="Оплачено:" Grid.Row="6" />
                         <TextBlock Style="{StaticResource DigitalText}" Text="{Binding Path=Value.Paid, StringFormat='{}{0} Min.'}" Grid.Row="7" />
-
                         <TextBlock Style="{StaticResource NormalText}" Text="Имя клиента:" Grid.Column="1"  />
                         <TextBlock Style="{StaticResource NormalText}" FontStretch="SemiCondensed" FontSize="16" Text="{Binding Path=Value.ClientName}" Grid.Column="1" Grid.Row="1" />
                         <TextBlock Style="{StaticResource NormalText}" Text="Номер телефона:" Grid.Column="1" Grid.Row="2" />
                         <TextBlock Style="{StaticResource DigitalText}"  Text="{Binding Path=Value.Telephone}" Grid.Column="1" Grid.Row="3" />
-                        <TextBlock Style="{StaticResource NormalText}" Text="Возраст:" Grid.Column="1" Grid.Row="4" />
-                        <TextBlock Style="{StaticResource DigitalText}"  Text="{Binding Path=Value.Age, Converter={StaticResource AgeValueConverter}}" Grid.Column="1" Grid.Row="5" />
-                        <TextBlock Style="{StaticResource NormalText}" Text="Номер п/п:" Grid.Column="1" Grid.Row="6" />
-                        <TextBlock Style="{StaticResource DigitalText}"  Text="{Binding Path=Value.ID}" Grid.Column="1" Grid.Row="7" />
+                        <TextBlock Style="{StaticResource NormalText}" Text="Время выхода:" Grid.Column="1" Grid.Row="4" />
+                        <TextBlock Style="{StaticResource DigitalText}"  Grid.Column="1" Grid.Row="5" >
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource TimeEndConverter}" StringFormat="HH:mm">
+                                    <Binding Path="Value.TimeStart" />
+                                    <Binding Path="Value.Paid" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource NormalText}" Text="Возраст:" Grid.Column="1" Grid.Row="6" />
+                        <TextBlock Style="{StaticResource DigitalText}"  Text="{Binding Path=Value.Age, Converter={StaticResource AgeValueConverter}}" Grid.Column="1" Grid.Row="7" />
                     </Grid>
                 </Button.Content>
             </Button>

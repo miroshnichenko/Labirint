@@ -66,6 +66,7 @@
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="RentValueConverter.cs" />
+    <Compile Include="TimeEndConverter.cs" />
     <Page Include="AddVisitorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
